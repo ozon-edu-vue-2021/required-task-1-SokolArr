@@ -8,8 +8,7 @@ body {
 
 img {
     width: 100%;
-    max-width: 100%;
-    display: bloсk;
+    border-radius: 16px;
 }
 
 a {
@@ -26,6 +25,9 @@ button {
     color: #fff;
     cursor: pointer;
     transition: 0.2s background-color;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
 }
 
 button:disabled {
@@ -42,11 +44,12 @@ main {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 50px;
+    padding: 40px;
     background-color: #fff;
     box-sizing: border-box;
     border-radius: 6px;
-    margin: 50px auto;
+    margin: 20px;
+    justify-content: center;
 }
 
 /* Action style */
@@ -55,7 +58,7 @@ main {
     font-size: 16px;
     padding: 10px 20px;
     border-radius: 6px;
-    margin: 10px 0;
+    /* margin: 10px 0; */
 }
 
 .action:hover {
@@ -65,8 +68,9 @@ main {
 /* Images style */
 .content {
     position: relative;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 30px;
+    /* margin-bottom: 20px; */
+    margin: auto;
     column-count: 4;
     column-gap: 5px;
     min-height: 400px;
@@ -74,22 +78,23 @@ main {
 
 a {
     display: inline-block;
-    border-radius: 6px;
+    /* border-radius: 6px; */
     overflow: hidden;
     width: 100%;
-    min-height: 100px;
+    min-height: 100%;
+    position: relative;
 }
 
 a:nth-child(n) {
-    background-color: #EFEBE9;
+    /* background-color: #EFEBE9; */
 }
 
 a:nth-child(2n) {
-    background-color: #D7CCC8;
+    /* background-color: #D7CCC8; */
 }
 
 a:nth-child(3n) {
-    background-color: #BCAAA4;
+    /* background-color: #BCAAA4; */
 }
 
 /* Popup style */
@@ -126,14 +131,14 @@ figcaption {
     bottom: 0;
     right: 0;
     background-color: rgba(33, 33, 33, 0.5);
-    z-index: -1;
+    z-index: +1;
 }
 
 .popup.open {
     visibility: visible;
 }
 
-.action {
+.action.close {
     position: absolute;
     top: 50px;
     right: 50px;

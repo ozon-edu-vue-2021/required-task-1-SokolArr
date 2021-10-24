@@ -33,6 +33,7 @@ const getPictures = function (page = 1, limit = 10) {
     fetch(`https://picsum.photos/v2/list?page=${page};limit=${limit}`)
         .then(function (response) {return response.json()})
         .then(function (result) {renderPictures(result)})
+        
 }
 
 /**
@@ -62,7 +63,8 @@ const showLoader = function () {
 const hideLoader = function () {
     loaderTimeout = setTimeout(function () {
         loader.style.visibility = 'hidden';
-        loaderTimeout.clearTimeout();
+        clearTimeout(loaderTimeout);
+        //loaderTimeout.clearTimeout();
     }, 700);
 }
 
@@ -90,24 +92,29 @@ const renderPictures = function (list) {
     if (!list.length) {
         throw Error(`Pictures not defined. The list length: ${list.length}`);
     }
-
     const clone = templateImageCard.content.cloneNode(true);
     const fragment = document.createDocumentFragment();
-
+    
+    //console.log(list[0]);
     list.forEach(function (element) {
-        const link = clone.querySelector('a');
+        
+        const image = document.createElement("img")
+        const link = document.createElement('a');
 
-        link.href = element.url;
+        link.href = element.download_url;
         link.dataset.id = element.id;
-
-        const image = clone.querySelector('img');
-        image.src = cropImage(element.download_url, 5);
+        image.src = cropImage(element.download_url, 10);
+        image.src = element.download_url;
         image.alt = element.author;
         image.classList.add('preview');
-        fragment.appendChild(clone)
-    });
 
+        link.appendChild(image);
+        fragment.appendChild(link);
+    
+    });
+    
     container.appendChild(fragment);
+
     hideLoader();
 }
 
@@ -118,6 +125,7 @@ const renderPictures = function (list) {
  */
 const renderPopupPicture = function (picture) {
     const clone = templateImagePopup.content.cloneNode(true);
+    
     const img = clone.querySelector('img');
     const link = clone.querySelector('a');
     const author = clone.querySelector('.author');
@@ -151,7 +159,7 @@ const togglePopup = function () {
  */
 const actionHandler = function (evt) {
     evt.preventDefault();
-    const nextPage = evt.currentTarget.dataset.page;
+    const nextPage = parseInt(evt.currentTarget.dataset.page);
     evt.currentTarget.dataset.page = nextPage + 1;
 
     if (nextPage > MAX_PAGE_IAMGES) {
@@ -172,7 +180,8 @@ const imageHandler = function (evt) {
     evt.preventDefault();
 
     if (evt.target.closest('a')) {
-        getPictureInfo(evt.target.dataset.id);
+        const tmp = evt.target.closest('a')
+        getPictureInfo(tmp.dataset.id);
     }
 }
 

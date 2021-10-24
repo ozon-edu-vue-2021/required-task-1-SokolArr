@@ -11,6 +11,8 @@
 
 <body>
     <main class="main">
+        <button class="action fetch" data-page="2">Загрузить картинки</button>
+        <section class="images content"></section>
         <div class="loader">
             <div></div>
             <div></div>
@@ -21,15 +23,11 @@
             <div></div>
             <div></div>
         </div>
-        <button class="action fetch" data-page="2">Загрузить картинки</button>
-        <section class="images content"></section>
-    </main>
-    <div class="popup">
-        <button class="action close">&Cross;</button>
-        <div class="content"></div>
-    </div>
 
-    <script src="./scripts/index.js"></script>
+    </main>
+
+
+    
 
     <template id="image">
         <a class="link" href="" data-id="">
@@ -48,6 +46,11 @@
             <a class="link open" href="" target="_blank">Открыть в полном размере</a>
         </div>
     </template>
+    <div class="popup">
+        <button class="action close">&Cross;</button>
+        <div class="content"></div>
+    </div>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>
